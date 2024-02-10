@@ -141,17 +141,19 @@ def create_notion_record(notion_field: NotionField, database_id: str, endpoint: 
 
 
 def main():
-    print("Please input your word")
-    word = input().lower()
-    print("Your word", word)
-    word_response = fetch_word_data(word)
-    if word_response:
-        notion_fields = create_notion_fields(word_response)
-        database_id = '63eefad1dd0f49f280cfe46bee8858e2'
-        endpoint = 'https://api.notion.com/v1/pages'
-        for notion_field in notion_fields:
-            create_notion_record(notion_field, database_id, endpoint, token)
-            pass
+    while (True):
+        print("Please input your word")
+        word = input().lower()
+        print("Your word", word)
+        word_response = fetch_word_data(word)
+        if word_response:
+            notion_fields = create_notion_fields(word_response)
+            database_id = '63eefad1dd0f49f280cfe46bee8858e2'
+            endpoint = 'https://api.notion.com/v1/pages'
+            for notion_field in notion_fields:
+                create_notion_record(
+                    notion_field, database_id, endpoint, token)
+                pass
 
 
 if __name__ == "__main__":
